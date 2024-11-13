@@ -1,32 +1,118 @@
-AI Chatbot
+Table of Contents
+Deploy Lex bot and Alexa backend function using Java
+JSON Document
+Different platforms
+Lex
+Twilio/SMS
+Facebook
+Slack
+Alexa
+Web
+Mobile
+Logging using Amazon CloudWatch
+Monitoring using AWS X-Ray
+How to talk to the chatbot?
+This repository explains how to create a Star Wars chatbot using Amazon Lex and Java.
 
-This is my Artificial Intelligence Assignment.
+logo
+The users can interact with this chatbot using the following means:
 
-In this Assignment I build an AI contextual Chatbot using the tensorflow and tflearn library I used the concepts of Natural Language Processing and Neural Network to build it. The intents file that we used for training is made by us.
+Voice (Alexa, Phone/Call)
 
-Dependencies
+Text (Phone/SMS, Facebook Messenger, Slack)
 
-pip3 install nltk
-pip3 install tensorflow==1.13.2
-pip3 install numpy
-pip3 install tflearn
-pip3 install random
-pip3 install json
-Use Cases
+Here are the key components of architecture:
 
-In this technological world every industry run behind AI and automation. One of the best application of integration of AI and Automation would be Chatbots. These are heavily used now-a-days. There are many diferent use cases of Chatbots in indutries. Some of them are,
+architecture
+Deploy Lex bot and Alexa backend function using Java
 
-Saves labour work
-Provides 24x7 support
-Instant service
-Can entertain more number of people at same time
-Easy Communication, etc
-How to run ?
+You need to install org.sample.aws.lex:lex-java:0.2 dependency as explained at https://github.com/arun-gupta/lex-java#install-jar-locally before building this project.
 
-To run this application you can use jupyter notebook and open this file with jupyter notebook. Run each cell of notebook. After you run every cell, you can call response() method and put your query within it. for eg :
+mvn -f starwars-chatbot/pom.xml clean package install
+ARN for Alexa function: aws lambda get-function --function-name StarWarsChatbot --region us-east-1 | jq .Configuration.FunctionArn
 
-response("What is the location of your company?")
+Note
+Getting Started with Alexa skill using Java is explained at https://github.com/arun-gupta/alexa-skill-java.
+JSON Document
 
-This Chatbot is primarly focused for an CyberSecurity based Industry. It can be a customer care Chatbot by using which you can know which kind of services does the Cyber Industry provides. Also you can use this chatbot to know some basic terminologies in Cyber Industry like ; What is cryptography ?, What is Hashing ?, etc.
+Data is loaded as JSON documents in DynamoDB. Here is a sample JSON document:
 
-Also by using Flask or with other web technologies you can use this chatbot to embeed in your website and can change the intent file as per your requirement and enhace the performance of your website. Now-a-days everything getting automated. One of the best example of automation would be Chatbots. In this technological world where every thing is being automated you can also automate customer services by using an AI Chatbot.# AI-Chatbot
+{
+  "dead": true,
+  "force-sensitive": true,
+  "force-side": "light",
+  "id": 1,
+  "lightsaber": "green",
+  "planet": "Dagobah",
+  "quotes": [
+    "When nine hundred years old you reach, look as good you will not.",
+    "Truly wonderful, the mind of a child is",
+    "A Jedi uses the Force for knowledge and defense, never for attack",
+    "That is why you fail.",
+    "Adventure. Excitement. A Jedi craves not these things.",
+    "Judge me by my size, do you?",
+    "Fear is the path to the dark side",
+    "Wars not make one great",
+    "Do, or do not. There is no try",
+    "Size matters not",
+    "The dark side clouds everything",
+    "Impossible to see the future is",
+    "Clear your mind must be",
+    "Much to learn you still have ... my old padawan"
+  ],
+  "weapon": "lightsaber",
+  "whoami": "Yoda"
+}
+Create Global Secondary Index on whoami
+
+Different platforms
+
+Lex
+
+http://docs.aws.amazon.com/lex/latest/dg/using-lambda.html
+
+lexbot
+Twilio/SMS
+
+Send a message to 408-913-9827 as shown below:
+
+sms
+Details: https://docs.aws.amazon.com/lex/latest/dg/twilio-bot-association.html
+
+Facebook
+
+Like https://www.facebook.com/Star-Wars-Chatbot-124902658243108/
+
+From http://messenger.com, send a message to this page as shown below:
+
+facebook
+Details: http://docs.aws.amazon.com/lex/latest/dg/fb-bot-association.html
+
+Slack
+
+Get yourself invited: https://join.slack.com/t/starwarschatbot/shared_invite/MjM4OTU2MTEwMTE0LTE1MDUwOTgzMzItYzZmMjFhYTNiNA
+
+DM with the app star_wars_chatbot and ask questions as shown below:
+
+slack
+Details: https://docs.aws.amazon.com/lex/latest/dg/slack-bot-association.html
+
+Alexa
+
+Test using http://echosim.io or Alexa
+
+Web
+
+TODO
+
+Mobile
+
+TODO
+
+Logging using Amazon CloudWatch
+
+Monitoring using AWS X-Ray
+
+TODO
+
+How to talk to the chatbot?
